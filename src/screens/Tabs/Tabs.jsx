@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Image } from 'react-native';
+import { Text, Image, TouchableOpacity, Alert, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../../components/Home';
 import Categories from '../../components/Categories';
@@ -7,6 +7,8 @@ import Notifications from '../../components/Notifications';
 import Account from '../../components/Account';
 import Cart from '../../components/Cart';
 import Icons from 'react-native-vector-icons/Feather';
+import SearchIcon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { BottomTabIcons, CartIcon, NotificationIcon, CategoriesIcon } from '../../assets';
 
 const Tab = createBottomTabNavigator();
@@ -25,7 +27,7 @@ const Tabs = () => {
             tabBarLabel: ({ focused }) => (
               <Text style={{
                 color: focused ? '#1e8fff' : '#141414', fontSize: 10, marginTop: -6,
-                fontFamily: 'inter_regular,fallback-inter_regular,Arial,sans-serif'
+                fontFamily: 'inter_regular,fallback-inter_regular,Arial,sans-serif' , fontWeight: 'bold'
               }}>Home</Text>
             ),
             tabBarIcon: ({ focused }) => (
@@ -38,12 +40,30 @@ const Tabs = () => {
           options={{
             title: 'All Categories',
             headerTitleStyle: {
-              fontSize: 20, 
+              fontSize: 18,
             },
+            headerRight: () => (
+              <View style={{ flexDirection: 'row', marginRight: 10 }}>
+                <TouchableOpacity onPress={() => {Alert.alert('Search')}}>
+                  <SearchIcon
+                    name="search"
+                    size={18}
+                    style={{ color: 'black', marginRight: 20, marginTop: 3 }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => {Alert.alert('Mic')}}>
+                  <Icon
+                    name="microphone"
+                    size={25}
+                    style={{ color: 'black' }}
+                  />
+                </TouchableOpacity>
+              </View>
+            ),
             tabBarLabel: ({ focused }) => (
               <Text style={{
                 color: focused ? '#1e8fff' : '#141414', fontSize: 10, marginTop: -6,
-                fontFamily: 'inter_regular,fallback-inter_regular,Arial,sans-serif'
+                fontFamily: 'inter_regular,fallback-inter_regular,Arial,sans-serif' ,fontWeight: 'bold'
               }}>Categories</Text>
             ),
             tabBarIcon: ({ focused }) => (
@@ -63,7 +83,7 @@ const Tabs = () => {
             tabBarLabel: ({ focused }) => (
               <Text style={{
                 color: focused ? '#1e8fff' : '#141414', fontSize: 10, marginTop: -6,
-                fontFamily: 'inter_regular,fallback-inter_regular,Arial,sans-serif'
+                fontFamily: 'inter_regular,fallback-inter_regular,Arial,sans-serif' , fontWeight: 'bold'
               }}>Notifications</Text>
             ),
             tabBarIcon: ({ focused }) => (
@@ -82,10 +102,10 @@ const Tabs = () => {
             tabBarLabel: ({ focused }) => (
               <Text style={{
                 color: focused ? '#1e8fff' : '#141414', fontSize: 10, marginTop: -6,
-                fontFamily: 'inter_regular,fallback-inter_regular,Arial,sans-serif'
+                fontFamily: 'inter_regular,fallback-inter_regular,Arial,sans-serif' , fontWeight: 'bold'
               }}>Account</Text>
             ),
-            tabBarIcon: ({focused }) => (
+            tabBarIcon: ({ focused }) => (
               <Image
                 source={BottomTabIcons}
                 style={{ width: 25, height: 25, tintColor: focused ? '#1e8fff' : '#141414' }}
@@ -101,7 +121,7 @@ const Tabs = () => {
             tabBarLabel: ({ focused }) => (
               <Text style={{
                 color: focused ? '#1e8fff' : '#141414', fontSize: 10, marginTop: -6,
-                fontFamily: 'inter_regular,fallback-inter_regular,Arial,sans-serif'
+                fontFamily: 'inter_regular,fallback-inter_regular,Arial,sans-serif' , fontWeight: 'bold'
               }}>Cart</Text>
             ),
             tabBarIcon: ({ focused }) => (
