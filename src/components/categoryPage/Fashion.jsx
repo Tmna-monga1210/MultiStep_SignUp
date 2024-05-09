@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { categoryData } from '../../data/data';
 
-const ForYou = () => {
+
+const Fashion = () => {
   return (
     <>
-      {categoryData.map((item) => (
+      {(categoryData.slice(1,3)).map((item) => (
         <View style={styles.content} key={item.id}>
           <Text style={styles.store} key={item.id} >{item.title}</Text>
 
@@ -63,4 +64,5 @@ const styles = StyleSheet.create({
   }
 
 })
-export default ForYou;
+
+export default Fashion

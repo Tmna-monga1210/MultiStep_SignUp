@@ -21,8 +21,33 @@ import Bluetooth from '../assets/Images/Categories/Bluetooth.png';
 import Teddy from '../assets/Images/Categories/Teddy.png';
 import Travel from '../assets/Images/Categories/Travel.png';
 import Kurta from '../assets/Images/Categories/Kurta.png';
+import Dslr from '../assets/Images/Categories/DSLR.png';
+import BeanBag from '../assets/Images/Categories/BeanBag.png';
+import Green from '../assets/Images/Categories/Green.png';
+import International from '../assets/Images/Categories/International.png';
+import TravelStore from '../assets/Images/Categories/TravelStore.png';
+import Smart from '../assets/Images/Categories/Smart.png';
+import Original from '../assets/Images/Categories/Original.png';
+import NextGen from '../assets/Images/Categories/NextGen.png';
+import ScanPay from '../assets/Images/Categories/Scan.jpg';
+import Coin from '../assets/Images/Categories/Coin.png';
+import Coupon from '../assets/Images/Categories/Coupon.png';
+import Games from '../assets/Images/Categories/Games.jpg';
+import Live from '../assets/Images/Categories/Live.jpg';
+import Money from '../assets/Images/Categories/Money.png';
+import Recharges from '../assets/Images/Categories/Recharges.jpg';
+import Plus from '../assets/Images/Categories/Plus.jpg';
+import App1 from '../assets/Images/Categories/App1.jpg';
+import Video from '../assets/Images/Categories/Video.png';
+import Warrenty from '../assets/Images/Categories/Warrenty.png';
+import Samsung from '../assets/Images/Categories/Samsung.png';
+import Split from '../assets/Images/Categories/Split.png';
+import Window from '../assets/Images/Categories/Window.png';
+import Premium from '../assets/Images/Categories/Premium.png';
+import Ton15 from '../assets/Images/Categories/1.5Ton.png';
+import Energy from '../assets/Images/Categories/Energy.png';
+import Ton12 from '../assets/Images/Categories/Ton1.2.png';
 
-
-export {BottomTabIcons, CartIcon, NotificationIcon, CategoriesIcon, ForYou, Fashion, Appliances, Mobiles, Home, Furniture, PersonalCare, ToysBaby, Medicines, Sports, TopOffers, Sale, Delivery, Mobile, Makeup, Bluetooth, Teddy, Travel, Kurta
+export {BottomTabIcons, CartIcon, NotificationIcon, CategoriesIcon, ForYou, Fashion, Appliances, Mobiles, Home, Furniture, PersonalCare, ToysBaby, Medicines, Sports, TopOffers, Sale, Delivery, Mobile, Makeup, Bluetooth, Teddy, Travel, Kurta, Dslr, BeanBag, Green, International, TravelStore, Smart, Original, NextGen, ScanPay, Coin, Coupon, Games, Live, Money, Recharges,  Plus, App1, Video, Warrenty, Samsung, Premium, Window, Split, Ton15, Energy, Ton12
   }
 

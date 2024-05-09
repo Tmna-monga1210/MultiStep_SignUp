@@ -1,11 +1,11 @@
 import React from 'react'
 import { Text, Image, TouchableOpacity, Alert, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../../components/Home';
-import Categories from '../../components/Categories';
-import Notifications from '../../components/Notifications';
-import Account from '../../components/Account';
-import Cart from '../../components/Cart';
+import Home from '../../screens/tabsScreens/Home';
+import Categories from '../../screens/tabsScreens/Categories';
+import Notifications from '../../screens/tabsScreens/Notifications';
+import Account from '../../screens/tabsScreens/Account';
+import Cart from '../../screens/tabsScreens/Cart';
 import Icons from 'react-native-vector-icons/Feather';
 import SearchIcon from 'react-native-vector-icons/FontAwesome'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,8 +13,7 @@ import { BottomTabIcons, CartIcon, NotificationIcon, CategoriesIcon } from '../.
 
 const Tab = createBottomTabNavigator();
 
-const Tabs = () => {
-
+const MainTabs = () => {
   return (
     <>
       <Tab.Navigator>
@@ -134,6 +133,7 @@ const Tabs = () => {
       </Tab.Navigator>
     </>
   )
+
 }
 
-export default Tabs
+export default MainTabs

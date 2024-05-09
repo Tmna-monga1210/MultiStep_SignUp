@@ -8,13 +8,13 @@
 import React from 'react';
 // import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import HomeScreens from './src/screens/StackScreen/HomeScreen';
+import MainScreen from './src/navigation/stack/MainScreen';
 
 
 function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <HomeScreens/>
+      <MainScreen/>
     </NavigationContainer>
   );
 }

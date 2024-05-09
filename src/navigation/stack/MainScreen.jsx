@@ -1,16 +1,16 @@
-import React from 'react'
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Tabs from '../Tabs/Tabs';
+import MainTabs from '../tabs/MainTabs';
 
 const Stack = createNativeStackNavigator();
 
-const HomeScreens = () => {
+const MainScreen = () => {
   return (
     <>
     <Stack.Navigator>
         <Stack.Screen
           name='HomeScreen'
-          component={Tabs}
+          component={MainTabs}
           options={{
             headerShown: false,
           }} />
@@ -19,4 +19,4 @@ const HomeScreens = () => {
   )
 }
 
-export default HomeScreens;
+export default MainScreen
