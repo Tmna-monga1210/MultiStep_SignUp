@@ -1,4 +1,4 @@
-import { TopOffers, Sale, Delivery, Mobile, Makeup, Bluetooth, Teddy, Travel , Kurta, Dslr, BeanBag, Green, International, TravelStore, Smart, Original, NextGen , ScanPay, Coin, Coupon, Games, Live, Money, Recharges,  Plus, Video, Warrenty, Samsung, Premium, Window, Split, Ton15, Energy, Ton12} from "../assets"
+import { TopOffers, Sale, Delivery, Mobile, Makeup, Bluetooth, Teddy, Travel , Kurta, Dslr, BeanBag, Green, International, TravelStore, Smart, Original, NextGen , ScanPay, Coin, Coupon, Games, Live, Money, Recharges,  Plus, Video, Warrenty, Samsung, Premium, Window, Split, Ton15, Energy, Ton12, Assured} from "../assets"
 
 export const categoryData = [{
 
@@ -120,4 +120,86 @@ export const categoryData = [{
   ]
 }
 ]
+
+export const ACdata = [
+{
+  itemId : 1,
+  image: Split,
+  itemName : 'Voltas 1.5 Ton 3 Star Split Inverter AC - White',
+  assured: Assured,
+  bestseller: 'BESTSELLER',
+  rating: '(3994)',
+  percentage: '49%',
+  pervPrice: '62,980',
+  newPrice: '31,990',
+  offers: 'Save extra with combo offers',
+  exchnage: 'Upto 5,400 Off on Exchange',
+  delivery: 'Free Delivery',
+  power: '975.89',
+  roomSize: '111-150', 
+},
+{
+  itemId : 2,
+  image: Premium,
+  itemName : 'MarQ by Flipkart 2024 1.5 Ton 5 Star split Inverter 4-in-1',
+  assured: Assured,
+  sponsored: 'Sponsored',
+  rating: '(5136)',
+  percentage: '48%',
+  pervPrice: '59,999',
+  newPrice: '30,990',
+  exchnage: 'Upto 5,400 Off on Exchange',
+  delivery: 'Free Delivery',
+  discount: 'Top Discount of the Sale',
+  power: '767.34',
+  roomSize: '111-150', 
+},
+{
+  itemId : 3,
+  image: Ton12,
+  itemName : 'Daikin 1.5 Ton 3 Star Split Inverter AC - White',
+  rating: '(4269)',
+  percentage: '36%',
+  pervPrice: '58,400',
+  newPrice: '36,990',
+  offers: 'Save extra with combo offers',
+  exchnage: 'Upto 6,400 Off on Exchange',
+  delivery: 'Free Delivery',
+  power: '972.89',
+  roomSize: '111-112', 
+},
+{
+  itemId : 4,
+  image: Split,
+  itemName : 'Voltas 1.5 Ton 3 Star Split Inverter AC - White',
+  sponsored: 'Sponsored',
+  bestseller: 'BESTSELLER',
+  rating: '(3887)',
+  percentage: '32%',
+  pervPrice: '67,980',
+  newPrice: '31,990',
+  offers: 'Save extra with combo offers',
+  exchnage: 'Upto 5,400 Off on Exchange',
+  delivery: 'Free Delivery',
+  power: '972.89',
+  roomSize: '111-112', 
+},
+{
+  itemId : 5,
+  image: Energy,
+  itemName : 'Voltas 1.5 Ton 3 Star Split Inverter AC - White',
+  rating: '(3887)',
+  percentage: '32%',
+  pervPrice: '67,980',
+  newPrice: '31,990',
+  exchnage: 'Upto 5,400 Off on Exchange',
+  delivery: 'Free Delivery',
+  power: '972.89',
+  roomSize: '111-112', 
+  discount: 'Top Discount of the Sales',
+}]
+
+export const fashion =[{
+  
+}]
 

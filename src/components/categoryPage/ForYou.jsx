@@ -20,9 +20,9 @@ const ForYou = () => {
       {(categoryData.slice(0, 3)).map((category) => (
         <View style={styles.content} key={category.id}>
           <Text style={styles.store}>{category.title}</Text>
-          <View style={styles.cardContent}>
+          <View style={styles.cardContent} key={category.id}>
             {(category.data).map((item, index) => (
-              <TouchableOpacity >
+              <TouchableOpacity key={item.dataId}>
                 {
                   expandedCategories[category.id] || index < 7 ? (
                     <View style={styles.imageContainers} key={item.dataId}>
@@ -38,7 +38,7 @@ const ForYou = () => {
             <View key={category.id}>
               {category.data.length > 7 && (
                 <View key={category.id}>
-                  <TouchableOpacity onPress={() => toggleCategoryExpansion(category.id)} >
+                  <TouchableOpacity onPress={() => toggleCategoryExpansion(category.id)} key={category.id} >
                     <View style={styles.imageContainers}>
                       {expandedCategories[category.id] ?
                         <View key={category.id}>

@@ -3,17 +3,16 @@ import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import Star from 'react-native-vector-icons/FontAwesome';
 import Arrow from 'react-native-vector-icons/AntDesign';
 import Heart from 'react-native-vector-icons/EvilIcons';
-import Compare from 'react-native-vector-icons/SimpleLineIcons'; 
 import { ACdata } from '../../data/data';
 
-const CategoryItem = () => {
+const AppliancesItems = () => {
   return (
     <View style={styles.container}>
       <View style={{ padding: 10 }}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
           <Text style={styles.text}>Sort By <Arrow name='down' /></Text>
           <Text style={styles.text}>Filter</Text>
-          <Text style={styles.text}><Compare name='control-pause' size={13}/> Compare</Text>
+          <Text style={styles.text}>Compare</Text>
           <Text style={styles.text}>Capacity</Text>
           <Text style={styles.text}>Price</Text>
           <Text style={styles.text}>Discount</Text>
@@ -24,10 +23,10 @@ const CategoryItem = () => {
         {ACdata.map((item) => (
           <View style={styles.content} key={item.itemId}>
             <View style={styles.parent}>
-            {item.bestseller ? (
+              {item.bestseller ? (
                 <Text style={styles.best}>{item.bestseller}</Text>
               ) : null}
-               <View style={styles.heartContainer}>
+              <View style={styles.heartContainer}>
                 <Heart name='heart' size={30} />
               </View>
             </View>
@@ -35,8 +34,8 @@ const CategoryItem = () => {
               <Image source={item.image} style={{ height: 100, width: 100 }} />
               <View style={styles.data}>
                 {item.sponsored ? (
-                <Text style={{color:'#B8BBC0', fontSize: 13}}>{item.sponsored}</Text>
-              ) : null}
+                  <Text style={{ color: '#B8BBC0', fontSize: 13 }}>{item.sponsored}</Text>
+                ) : null}
                 <Text style={{ color: 'black' }}>
                   {item.itemName}
                 </Text>
@@ -48,8 +47,8 @@ const CategoryItem = () => {
                   <Star name='star' size={15} style={{ color: '#E1E1E1', marginRight: 2 }} />
                   <Text style={{ marginRight: 2 }}>{item.rating}</Text>
                   {item.assured ? (
-                <Image source={item.assured} style={{ width: 60, height: 15, marginRight: 2 }} />
-              ) : null}
+                    <Image source={item.assured} style={{ width: 60, height: 15, marginRight: 2 }} />
+                  ) : null}
                 </View>
                 <View style={{ flexDirection: 'row', paddingTop: 3, alignItems: 'center' }}>
                   <Arrow name="arrowdown" color={'#078C03'} size={20} />
@@ -59,11 +58,11 @@ const CategoryItem = () => {
                   <Text style={{ color: '#111111', fontSize: 20, fontWeight: 'bold', marginRight: 3 }}>{item.newPrice}</Text>
                 </View>
                 {item.offers ? (
-                <Text style={{ color: '#078C03', fontSize: 12, paddingTop: 5 }}>{item.offers}</Text>
-              ) : null}
+                  <Text style={{ color: '#078C03', fontSize: 12, paddingTop: 5 }}>{item.offers}</Text>
+                ) : null}
                 {item.discount ? (
-                <Text style={styles.bests}>{item.discount}</Text>
-              ) : null}
+                  <Text style={styles.bests}>{item.discount}</Text>
+                ) : null}
                 <Text style={{ color: 'black', fontSize: 12, paddingTop: 5 }}>{item.exchnage}</Text>
                 <Text style={{ color: 'black', fontSize: 12, paddingTop: 5 }}>{item.delivery}</Text>
               </View>
@@ -149,7 +148,6 @@ const styles = StyleSheet.create({
   heartContainer: {
     marginLeft: 'auto', 
   },
-
 })
 
-export default CategoryItem;
+export default AppliancesItems

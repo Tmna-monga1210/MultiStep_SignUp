@@ -1,14 +1,16 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { App1 } from '../../assets';
 import { categoryData } from '../../data/data';
 import Icon from 'react-native-vector-icons/AntDesign'
 
-const Appliances = ({navigation}) => {
+const Appliances = ({ screenName }) => {
+  const navigation = useNavigation();
 
-  const toNewScreen = (id) =>{
+  const toNewScreen = (id) => {
     console.log(id)
-    // navigation.navigate('CategoryItem');
+    navigation.navigate(screenName);
   }
 
   return (
@@ -27,7 +29,7 @@ const Appliances = ({navigation}) => {
 
           <View style={styles.cardContent}>
             {(item.data).map((item) => (
-              <TouchableOpacity onPress={() => {toNewScreen(item.dataId)}}>
+              <TouchableOpacity onPress={() => toNewScreen(item.dataId)} key={item.dataId}>
                 <View style={styles.imageContainers} key={item.dataId}>
                   <Image source={item.image} style={styles.image} />
                   <Text style={styles.text}>{item.text}</Text>

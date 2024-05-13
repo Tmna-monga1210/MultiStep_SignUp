@@ -47,7 +47,8 @@ import Premium from '../assets/Images/Categories/Premium.png';
 import Ton15 from '../assets/Images/Categories/1.5Ton.png';
 import Energy from '../assets/Images/Categories/Energy.png';
 import Ton12 from '../assets/Images/Categories/Ton1.2.png';
+import Assured from '../assets/Images/Categories/assured.jpg'
 
-export {BottomTabIcons, CartIcon, NotificationIcon, CategoriesIcon, ForYou, Fashion, Appliances, Mobiles, Home, Furniture, PersonalCare, ToysBaby, Medicines, Sports, TopOffers, Sale, Delivery, Mobile, Makeup, Bluetooth, Teddy, Travel, Kurta, Dslr, BeanBag, Green, International, TravelStore, Smart, Original, NextGen, ScanPay, Coin, Coupon, Games, Live, Money, Recharges,  Plus, App1, Video, Warrenty, Samsung, Premium, Window, Split, Ton15, Energy, Ton12
+export {BottomTabIcons, CartIcon, NotificationIcon, CategoriesIcon, ForYou, Fashion, Appliances, Mobiles, Home, Furniture, PersonalCare, ToysBaby, Medicines, Sports, TopOffers, Sale, Delivery, Mobile, Makeup, Bluetooth, Teddy, Travel, Kurta, Dslr, BeanBag, Green, International, TravelStore, Smart, Original, NextGen, ScanPay, Coin, Coupon, Games, Live, Money, Recharges,  Plus, App1, Video, Warrenty, Samsung, Premium, Window, Split, Ton15, Energy, Ton12, Assured
   }
 

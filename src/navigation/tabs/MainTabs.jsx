@@ -3,6 +3,7 @@ import { Text, Image, TouchableOpacity, Alert, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../../screens/tabsScreens/Home';
 import Categories from '../../screens/tabsScreens/Categories';
+// import CategoryItemScreen from '../stack/CategoryItemScreen';
 import Notifications from '../../screens/tabsScreens/Notifications';
 import Account from '../../screens/tabsScreens/Account';
 import Cart from '../../screens/tabsScreens/Cart';
@@ -36,6 +37,7 @@ const MainTabs = () => {
         <Tab.Screen
           name='Categories'
           component={Categories}
+          // component={CategoryItemScreen}
           options={{
             title: 'All Categories',
             headerTitleStyle: {

@@ -14,7 +14,7 @@ const RightScroll = ({selectedCategory}) => {
       case 1:
         return <Fashion />;
       case 2:
-        return <Appliances/>
+        return <Appliances screenName='CategoryItem'/>
       // case 3:
       //   return <Mobiles/>
       default:

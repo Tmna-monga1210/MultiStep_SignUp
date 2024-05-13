@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import React from 'react'
+import { View, StyleSheet } from 'react-native';
 import LeftScroll from '../../components/categoryPage/LeftScroll';
-import RightScroll from '../../components/categoryPage/RightScroll';
 
 const Categories = () => {
   return (
