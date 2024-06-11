@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Text, Image, StyleSheet, TextInput, TouchableOpacity, View, ScrollView } from 'react-native'
+import React from 'react'
+import { Text, Image, TextInput, TouchableOpacity, View, ScrollView, Alert } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { Image3 } from '../assets'
 import Email from 'react-native-vector-icons/MaterialIcons'
@@ -7,6 +7,10 @@ import Password from 'react-native-vector-icons/SimpleLineIcons'
 import { useNavigation } from '@react-navigation/native'
 import { useSelector } from 'react-redux'
 import { Formik } from 'formik'
+import * as Yup from 'yup';
+import { signIn } from '../store/userSlice'
+import { useDispatch } from 'react-redux'
+import { signInStyle } from '../constants/style'
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -14,26 +18,36 @@ const validationSchema = Yup.object().shape({
 });
 
 const SignIn = () => {
-  const user = useSelector(state => state.data)
+
+  const user = useSelector(state => state.user.data)
   console.log("SignIn", user)
 
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
-  const handleSignIn = (values) => {
-    const userExists = user.find(users => users.email === values.email && users.password === values.password)
+  const handleSignIn = (values, setFieldError) => {
 
-    if (userExists) {
-      console.log("user mil gya");
-      // dispatch(loginUser(values.email, values.password))
-      // Navigate to the next screen or display a success message
-      navigation.navigate('home')
+    const userExists = user.filter(users => users.email === values.email)
+
+    if (userExists.length > 0) {
+      const existingPassword =  userExists[0].password
+      if (existingPassword === values.password) {
+        dispatch(signIn(userExists));
+      } else {
+        setFieldError('password', 'Wrong password');
+      }
     } else {
-      alert('Invalid email or password');
+      console.log("no")
+      Alert.alert(
+        'User does not exist',
+        'Please create an account to move further',
+        [
+          { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+          { text: 'OK', onPress: () => navigation.navigate('signUp' , { newUserEmail : values} ) },
+        ],
+        { cancelable: false }
+      );
     }
-  }
-
-  const handleSignUp = () => {
-    navigation.navigate('signUp')
   }
 
   return (
@@ -43,52 +57,69 @@ const SignIn = () => {
         password: '',
       }}
       validationSchema={validationSchema}
-      onSubmit={values => {
+      onSubmit={(values, { setFieldError }) => {
         console.log(values)
-        handleSignIn(values)
+        handleSignIn(values, setFieldError)
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, values, touched, errors }) => (
-        <LinearGradient colors={['#F6F8FF', '#F4EEF5', '#EAEEFD', '#F6F8FF']} style={styles.conatiner}>
-          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ alignItems: 'center', justifyContent: "center", paddingTop: 40, paddingBottom: 40 }}>
-            <Image source={Image3} style={styles.image} />
-            <Text style={styles.text}>Welcome Back</Text>
-            <Text style={styles.textTwo}>Go ahead and sign in. Get access to your incredible account!</Text>
+        <LinearGradient colors={['#F6F8FF', '#F4EEF5', '#EAEEFD', '#F6F8FF']} style={signInStyle.conatiner}>
+          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={signInStyle.scroll}>
+            <Image source={Image3} style={signInStyle.image} />
+            <Text style={signInStyle.text}>Welcome Back</Text>
+            <Text style={signInStyle.textTwo}>Go ahead and sign in. Get access to your incredible account!</Text>
 
-            <View style={styles.emailInput}>
+            <View style={signInStyle.emailInput}>
               <Email name='mail-outline' style={{ color: '#B5C2F5', marginRight: 10 }} size={20} />
               <Text style={{ fontSize: 25, color: '#E5E8FC', marginTop: -5 }}>|</Text>
               <TextInput
                 placeholder='Email'
-                style={styles.emailTextInput}
+                style={signInStyle.emailTextInput}
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
               />
             </View>
 
-            <View style={styles.emailInput}>
+            <View style={{ alignSelf: 'flex-start' }}>
+              {touched.email && errors.email && (
+                <Text style={signInStyle.error}>{errors.email}</Text>
+              )}
+            </View>
+
+            <View style={signInStyle.emailInput}>
               <Password name='lock' style={{ color: '#B5C2F5', marginRight: 10, fontWeight: 'bold' }} size={18} />
               <Text style={{ fontSize: 25, color: '#E5E8FC', marginTop: -5 }}>|</Text>
               <TextInput
                 placeholder='Password'
-                style={styles.emailTextInput}
+                style={signInStyle.emailTextInput}
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
                 value={values.password}
-                // secureTextEntry={true}
+                secureTextEntry={true}
               />
             </View>
 
-            <TouchableOpacity style={styles.getStarted} onPress={() => handleSubmit()}>
-              <LinearGradient style={styles.gradientButton} colors={['#366DE3', '#6B8AEE']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
-                <Text style={styles.buttonText}>Sign In</Text>
+            <View style={{ alignSelf: 'flex-start' }}>
+              {touched.password && errors.password && (
+                <Text style={signInStyle.error}>{errors.password}</Text>
+              )}
+            </View>
+
+            <TouchableOpacity style={signInStyle.getStarted} onPress={() => handleSubmit()}>
+              <LinearGradient 
+                style={signInStyle.gradientButton} 
+                colors={['#366DE3', '#6B8AEE']} 
+                start={{ x: 0, y: 0 }} 
+                end={{ x: 1, y: 1 }}
+              >
+                <Text style={signInStyle.buttonText}>Sign In</Text>
               </LinearGradient>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.signIn} onPress={() => handleSignUp()} >
-              <LinearGradient colors={['#E2EAFC', '#E2E8FC']} style={styles.signInGradient}>
-                <Text style={styles.signInText}>Create New Account</Text>
+            <TouchableOpacity style={signInStyle.signIn} onPress={() => navigation.navigate('signUp')} >
+              <LinearGradient colors={['#E2EAFC', '#E2E8FC']} style={signInStyle.signInGradient}>
+                <Text style={signInStyle.signInText}>Create New Account</Text>
               </LinearGradient>
             </TouchableOpacity>
 
@@ -99,79 +130,5 @@ const SignIn = () => {
 
   )
 }
-
-const styles = StyleSheet.create({
-  conatiner: {
-    flex: 1,
-  },
-  image: {
-    height: 300,
-    width: 300,
-    borderRadius: 5,
-    marginBottom: 30,
-  },
-  text: {
-    fontFamily: 'serif',
-    fontSize: 35,
-    fontWeight: 'bold',
-    color: 'black',
-  },
-  textTwo: {
-    textAlign: 'center',
-    lineHeight: 25,
-    color: 'black',
-    fontSize: 15,
-    paddingHorizontal: 35,
-    paddingVertical: 15,
-    letterSpacing: 0.2,
-  },
-  getStarted: {
-    marginTop: 12,
-    borderRadius: 10,
-  },
-  gradientButton: {
-    borderRadius: 10,
-    paddingHorizontal: 136,
-    paddingVertical: 18,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 15,
-  },
-  emailInput: {
-    paddingLeft: 15,
-    marginLeft: 20,
-    marginRight: 20,
-    flexDirection: 'row',
-    paddingVertical: 3,
-    borderRadius: 10,
-    backgroundColor: 'white',
-    marginBottom: 10,
-    borderColor: '#E5E8FC',
-    borderWidth: 1.5,
-    alignItems: 'center',
-  },
-  emailTextInput: {
-    flex: 1,
-    fontSize: 16,
-    marginLeft: 5,
-  },
-  signIn: {
-    marginTop: 15,
-    borderRadius: 10,
-  },
-  signInGradient: {
-    borderRadius: 10,
-    paddingHorizontal: 93,
-    paddingVertical: 15,
-    alignItems: 'center',
-  },
-  signInText: {
-    color: 'black',
-    fontSize: 15,
-  },
-})
 
 export default SignIn

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Text, View, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { Text, View, ScrollView, TextInput, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Name from 'react-native-vector-icons/Octicons'
 import { useNavigation } from '@react-navigation/native'
@@ -8,6 +8,9 @@ import { Formik } from 'formik'
 import * as Yup from 'yup';
 import { setUserData } from '../store/userSlice'
 import { useDispatch } from 'react-redux'
+import { signUp3Style } from '../constants/style'
+import Progress from '../components/Progress'
+import { signIn } from '../store/userSlice'
 
 const validationSchema = Yup.object().shape({
   bankName: Yup.string()
@@ -27,48 +30,50 @@ const validationSchema = Yup.object().shape({
 });
 
 const SignUp3 = () => {
+
+  const [currentStep, setCurrentStep] = useState(3);
+
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const route = useRoute();
 
   const user = route.params
 
-  const handlePrev = () => {
-    navigation.navigate('signIn')
-  }
-
   return (
     <Formik
       initialValues={{
-        bankName: 'lgkbmgfb',
-        customerName: 'krgjfvf',
-        accountNumber: '0987654321',
-        reEnterAccountNumber: '0987654321',
-        isfcCode: 'SBIN0AB0009',
+        bankName: '',
+        customerName: '',
+        accountNumber: '',
+        reEnterAccountNumber: '',
+        isfcCode: '',
       }}
       validationSchema={validationSchema}
-      onSubmit={(values ,{resetForm}) => {
+      onSubmit={(values, { resetForm }) => {
         const userData = {
           ...user,
           ...values
         }
-        // console.log(userData)
         resetForm();
+        console.log(userData)
+        dispatch(signIn([userData]))
         dispatch(setUserData(userData))
-        // navigation.navigate('home')
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, values, touched, errors }) => (
-        <LinearGradient colors={['#F6F8FF', '#F4EEF5', '#EAEEFD', '#F6F8FF']} style={styles.conatiner}>
-          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
-            <Text style={styles.texts}>Banking Information</Text>
+        <LinearGradient colors={['#F6F8FF', '#F4EEF5', '#EAEEFD', '#F6F8FF']} style={signUp3Style.conatiner}>
+          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={signUp3Style.scroll}>
+            
+            <Progress currentStep={currentStep} />
 
-            <View style={styles.emailInput}>
+            <Text style={signUp3Style.texts}>Banking Information</Text>
+
+            <View style={signUp3Style.emailInput}>
               <Name name='person' style={{ color: '#B5C2F5', marginRight: 10 }} size={20} />
               <Text style={{ fontSize: 25, color: '#E5E8FC', marginTop: -5 }}>|</Text>
               <TextInput
                 placeholder='Bank Name'
-                style={styles.emailTextInput}
+                style={signUp3Style.emailTextInput}
                 onChangeText={handleChange('bankName')}
                 onBlur={handleBlur('bankName')}
                 value={values.bankName}
@@ -77,16 +82,16 @@ const SignUp3 = () => {
 
             <View style={{ alignSelf: 'flex-start' }}>
               {touched.bankName && errors.bankName && (
-                <Text style={styles.error}>{errors.bankName}</Text>
+                <Text style={signUp3Style.error}>{errors.bankName}</Text>
               )}
             </View>
 
-            <View style={styles.emailInput}>
+            <View style={signUp3Style.emailInput}>
               <Name name='person' style={{ color: '#B5C2F5', marginRight: 10 }} size={20} />
               <Text style={{ fontSize: 25, color: '#E5E8FC', marginTop: -5 }}>|</Text>
               <TextInput
                 placeholder='Customer Name'
-                style={styles.emailTextInput}
+                style={signUp3Style.emailTextInput}
                 onChangeText={handleChange('customerName')}
                 onBlur={handleBlur('customerName')}
                 value={values.customerName}
@@ -95,16 +100,16 @@ const SignUp3 = () => {
 
             <View style={{ alignSelf: 'flex-start' }}>
               {touched.customerName && errors.customerName && (
-                <Text style={styles.error}>{errors.customerName}</Text>
+                <Text style={signUp3Style.error}>{errors.customerName}</Text>
               )}
             </View>
 
-            <View style={styles.emailInput}>
+            <View style={signUp3Style.emailInput}>
               <Name name='person' style={{ color: '#B5C2F5', marginRight: 10 }} size={20} />
               <Text style={{ fontSize: 25, color: '#E5E8FC', marginTop: -5 }}>|</Text>
               <TextInput
                 placeholder='Account Number'
-                style={styles.emailTextInput}
+                style={signUp3Style.emailTextInput}
                 onChangeText={handleChange('accountNumber')}
                 onBlur={handleBlur('accountNumber')}
                 value={values.accountNumber}
@@ -113,16 +118,16 @@ const SignUp3 = () => {
 
             <View style={{ alignSelf: 'flex-start' }}>
               {touched.accountNumber && errors.accountNumber && (
-                <Text style={styles.error}>{errors.accountNumber}</Text>
+                <Text style={signUp3Style.error}>{errors.accountNumber}</Text>
               )}
             </View>
 
-            <View style={styles.emailInput}>
+            <View style={signUp3Style.emailInput}>
               <Name name='person' style={{ color: '#B5C2F5', marginRight: 10 }} size={20} />
               <Text style={{ fontSize: 25, color: '#E5E8FC', marginTop: -5 }}>|</Text>
               <TextInput
                 placeholder='Re-enter Account Number'
-                style={styles.emailTextInput}
+                style={signUp3Style.emailTextInput}
                 onChangeText={handleChange('reEnterAccountNumber')}
                 onBlur={handleBlur('reEnterAccountNumber')}
                 value={values.reEnterAccountNumber}
@@ -131,16 +136,16 @@ const SignUp3 = () => {
 
             <View style={{ alignSelf: 'flex-start' }}>
               {touched.reEnterAccountNumber && errors.reEnterAccountNumber && (
-                <Text style={styles.error}>{errors.reEnterAccountNumber}</Text>
+                <Text style={signUp3Style.error}>{errors.reEnterAccountNumber}</Text>
               )}
             </View>
 
-            <View style={styles.emailInput}>
+            <View style={signUp3Style.emailInput}>
               <Name name='person' style={{ color: '#B5C2F5', marginRight: 10 }} size={20} />
               <Text style={{ fontSize: 25, color: '#E5E8FC', marginTop: -5 }}>|</Text>
               <TextInput
                 placeholder='IFSC Code'
-                style={styles.emailTextInput}
+                style={signUp3Style.emailTextInput}
                 onChangeText={handleChange('isfcCode')}
                 onBlur={handleBlur('isfcCode')}
                 value={values.isfcCode}
@@ -149,22 +154,31 @@ const SignUp3 = () => {
 
             <View style={{ alignSelf: 'flex-start' }}>
               {touched.isfcCode && errors.isfcCode && (
-                <Text style={styles.error}>{errors.isfcCode}</Text>
+                <Text style={signUp3Style.error}>{errors.isfcCode}</Text>
               )}
             </View>
+            <View style={{ flexDirection: 'row' }}>
 
-            <TouchableOpacity style={styles.getStarted} onPress={handleSubmit}>
-              <LinearGradient style={styles.gradientButton} colors={['#366DE3', '#6B8AEE']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
-                <Text style={styles.buttonText}>Submit</Text>
-              </LinearGradient>
-            </TouchableOpacity>
+              <TouchableOpacity style={signUp3Style.getStarted} onPress={() => navigation.navigate('signUp2')}>
+                <LinearGradient
+                  style={signUp3Style.gradientButton}
+                  colors={['#366DE3', '#6B8AEE']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}>
+                  <Text style={signUp3Style.buttonText}>Prev</Text>
+                </LinearGradient>
+              </TouchableOpacity>
 
-            <TouchableOpacity style={styles.signIn} onPress={() => handlePrev()}>
-              <LinearGradient colors={['#E2EAFC', '#E2E8FC']} style={styles.signInGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
-                <Text style={styles.signInText}>I already have an account</Text>
-              </LinearGradient>
-            </TouchableOpacity>
-
+              <TouchableOpacity style={signUp3Style.getStarted} onPress={handleSubmit}>
+                <LinearGradient
+                  style={signUp3Style.gradientButton}
+                  colors={['#366DE3', '#6B8AEE']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}>
+                  <Text style={signUp3Style.buttonText}>Submit</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View >
           </ScrollView>
         </LinearGradient>
       )}
@@ -172,75 +186,5 @@ const SignUp3 = () => {
   )
 }
 
-const styles = StyleSheet.create({
-  scroll: {
-    alignItems: 'center',
-    justifyContent: "center",
-    paddingTop: 40,
-    paddingBottom: 40
-  },
-  conatiner: {
-    flex: 1,
-  },
-  texts: {
-    marginTop: 10,
-    marginBottom: 20,
-    fontFamily: 'serif',
-    fontSize: 30,
-    color: 'black',
-  },
-  emailInput: {
-    paddingLeft: 15,
-    marginLeft: 20,
-    marginRight: 20,
-    flexDirection: 'row',
-    paddingVertical: 3,
-    borderRadius: 10,
-    backgroundColor: 'white',
-    marginBottom: 10,
-    borderColor: '#E5E8FC',
-    borderWidth: 1.5,
-    alignItems: 'center',
-  },
-  emailTextInput: {
-    flex: 1,
-    fontSize: 16,
-    marginLeft: 5,
-  },
-  getStarted: {
-    marginTop: 10,
-  },
-  gradientButton: {
-    paddingVertical: 16,
-    paddingHorizontal: 135,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  signIn: {
-    marginTop: 20,
-    borderRadius: 10,
-  },
-  signInGradient: {
-    borderRadius: 10,
-    paddingHorizontal: 80,
-    paddingVertical: 15,
-    alignItems: 'center',
-  },
-  signInText: {
-    color: 'black',
-    fontSize: 15,
-  },
-  error: {
-    color: 'red',
-    fontSize: 12,
-    marginBottom: 10,
-    paddingHorizontal: 27,
-  },
-})
 
 export default SignUp3

@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore, FLUSH,
   REHYDRATE,
   PAUSE,
@@ -8,12 +8,16 @@ import { persistReducer, persistStore, FLUSH,
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import userReducer from './userSlice'
 
+const rootReducer = combineReducers({
+  user : userReducer
+})
+
 const persistConfig={
   key: 'root',
   storage : AsyncStorage
 }
 
-const persistedReducer = persistReducer(persistConfig, userReducer )
+const persistedReducer = persistReducer(persistConfig, rootReducer )
 
 export const store = configureStore({
   reducer : persistedReducer,

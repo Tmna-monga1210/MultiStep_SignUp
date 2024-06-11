@@ -1,18 +1,28 @@
-import { createSlice, nanoid  } from "@reduxjs/toolkit";
+import { createSlice} from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: 'USERS',
   initialState:{
-    data: []
+    data: [],
+    isSignedIn : true,
+    loggedInUserData : [],
   },
   reducers: {
     setUserData: (state, action) => {
       state.data.push(action.payload);
-      // console.log(state.data)
-    }
+      state.isSignedIn = false
+    },
+    signOut: (state) => {
+      state.isSignedIn = true;
+      
+    },
+    signIn: (state, action) => {
+      state.loggedInUserData = action.payload;
+      state.isSignedIn = false;
+    },
   }
 })
 
-export const { setUserData } = userSlice.actions;
+export const { setUserData, signOut, signIn } = userSlice.actions;
 export default userSlice.reducer;
 
